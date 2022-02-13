@@ -13,7 +13,7 @@ MySQL 8
 #### Clonar o repositório
 
 ```
-git clone 
+git clone https://github.com/Sidneyasjr/desafio-promobit.git
 ```
 
 #### Instalar as depencências
