@@ -1,12 +1,12 @@
 ## 💻 Projeto desafio Promobit
 
 ### 🚀 Techs Utilizadas
-PHP 8
-Laravel 8
-Jquery
-bootstrap 4.6
-AdminLTE 3
-MySQL 8
+- PHP 8
+- Laravel 8
+- Jquery
+- bootstrap 4.6
+- AdminLTE 3
+- MySQL 8
 
 ### Instalando o projeto
 
