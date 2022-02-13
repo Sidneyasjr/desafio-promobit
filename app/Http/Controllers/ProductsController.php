@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductRequest;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ProductsController extends Controller
 {
@@ -13,7 +16,9 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::paginate(10);
+
+        return view('products.index')->with('products', $products);
     }
 
     /**
@@ -23,7 +28,7 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        //
+        return view('products.create');
     }
 
     /**
@@ -32,9 +37,11 @@ class ProductsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        //
+        $data = $request->except('_token');
+        Product::create($data);
+        return redirect()->route('products.index')->with('message', 'Produto criado com sucesso');
     }
 
     /**
@@ -54,9 +61,9 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Product $product)
     {
-        //
+        return view('products.edit')->with('product', $product);
     }
 
     /**
@@ -66,9 +73,11 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductRequest $request, Product $product)
     {
-        //
+        $data = $request->except(['_token', '_method']);
+        $product->update($data);
+        return redirect()->route('products.index')->with('message', 'Produto editado com sucesso');
     }
 
     /**
@@ -77,8 +86,9 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return redirect()->route('products.index')->with('message', 'Produto excluido com sucesso');
     }
 }

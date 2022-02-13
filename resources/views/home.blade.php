@@ -7,5 +7,5 @@
 @stop
 
 @section('content')
-    <p>Welcome to this beautiful admin panel.</p>
+    <p>Bem Vindo ao Sistema de Cadastro de Produtos</p>
 @stop

@@ -233,14 +233,14 @@ return [
             'icon'    => 'fab fa-product-hunt',
             'submenu' => [
                 [
-                    'text' => 'Listar Produtos',
+                    'text' => 'Lista de Produtos',
                     'icon'    => 'fas fa-list',
-                    'url'  => '#',
+                    'route'  => 'products.index',
                 ],
                 [
                     'text' => 'Cadastrar Produto',
                     'icon'    => 'fas fa-plus',
-                    'url'  => '#',
+                    'route'  => 'products.create',
                 ],
             ]
                 
