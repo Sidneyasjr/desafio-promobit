@@ -1,6 +1,6 @@
-## Projeto desafio Promobit
+## 💻 Projeto desafio Promobit
 
-### Techs Utilizadas
+### 🚀 Techs Utilizadas
 PHP 8
 Laravel 8
 Jquery
