@@ -44,3 +44,16 @@ php artisan migrate
 ```
 php artisan serve
 ```
+
+#### Extração de relatório de releavância de produtos
+```
+SELECT tags.id
+	,tags.name
+	,COUNT(product_tag.product_id) AS qtde_products
+	,GROUP_CONCAT(products.name ORDER BY products.name ASC SEPARATOR ', ') AS products
+FROM tags
+JOIN product_tag ON tags.id = product_tag.tag_id
+JOIN products ON products.id = product_tag.product_id
+GROUP BY tags.name
+
+```

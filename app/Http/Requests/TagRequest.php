@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Product;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProductRequest extends FormRequest
+class TagRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,8 +24,7 @@ class ProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'unique:products,name,' . @$this->route('product')->id],
-            'tags' => ['required']
+            'name' => ['required', 'unique:tags,name,' . @$this->route('tag')->id],
         ];
     }
 }

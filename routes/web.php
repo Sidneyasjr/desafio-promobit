@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\TagsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -24,13 +25,11 @@ Route::middleware('auth')->group(function () {
     //Home
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-    //Routes Products
-    Route::get('/produtos', [ProductsController::class, 'index'])->name('products.index');
-    Route::get('/produtos/cadastrar', [ProductsController::class, 'create'])->name('products.create');
-    Route::post('/produtos', [ProductsController::class, 'store'])->name('products.store');
-    Route::get('/produtos/{product}/editar', [ProductsController::class, 'edit'])->name('products.edit');
-    Route::put('/produtos/{product}', [ProductsController::class, 'update'])->name('products.update');
-    Route::delete('/produtos/{product}', [ProductsController::class, 'destroy'])->name('products.destroy');
+    Route::resources([
+        'products' => ProductsController::class,
+        'tags' => TagsController::class,
+    ]);
+    Route::get('relevance-products', [TagsController::class, 'productsRelevance'])->name('tags.relevance');
 });
 
 

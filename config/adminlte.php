@@ -252,12 +252,12 @@ return [
                 [
                     'text' => 'Listar Tags',
                     'icon'    => 'fas fa-list',
-                    'url'  => '#',
+                    'route'  => 'tags.index',
                 ],
                 [
                     'text' => 'Cadastrar Tag',
                     'icon'    => 'fas fa-plus',
-                    'url'  => '#',
+                    'route'  => 'tags.create',
                 ],
             ]
                 
@@ -269,7 +269,7 @@ return [
                 [
                     'text' => 'Relevancia de Produtos',
                     'icon'    => 'far fa-file-alt',
-                    'url'  => '#',
+                    'route'  => 'tags.relevance',
                 ],
             ]
                 
@@ -332,17 +332,22 @@ return [
             ],
         ],
         'Select2' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js',
+                    'asset' => true,
+                    'location' => 'vendor/select2/js/select2.full.min.js',
                 ],
                 [
                     'type' => 'css',
-                    'asset' => false,
-                    'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css',
+                    'asset' => true,
+                    'location' => 'vendor/select2/css/select2.min.css',
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'vendor/select2-bootstrap4-theme/select2-bootstrap4.min.css',
                 ],
             ],
         ],

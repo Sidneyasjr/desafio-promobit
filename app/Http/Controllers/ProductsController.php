@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -28,7 +29,8 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+        $tags = Tag::get();
+        return view('products.create')->with('tags', $tags);
     }
 
     /**
@@ -40,7 +42,11 @@ class ProductsController extends Controller
     public function store(ProductRequest $request)
     {
         $data = $request->except('_token');
-        Product::create($data);
+        $product = Product::create([
+            'name' => $data['name']
+        ]);
+        if (@$data['tags'])
+            $product->tags()->attach($data['tags']);
         return redirect()->route('products.index')->with('message', 'Produto criado com sucesso');
     }
 
@@ -63,7 +69,12 @@ class ProductsController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('products.edit')->with('product', $product);
+        $tags = Tag::get();
+        $selected_tags = [];
+        foreach ($product->tags as $product_tag) {
+            array_push($selected_tags, $product_tag->id);
+        }
+        return view('products.edit')->with(['product'=> $product, 'tags' => $tags, 'selected_tags' => $selected_tags]);
     }
 
     /**
@@ -76,7 +87,9 @@ class ProductsController extends Controller
     public function update(ProductRequest $request, Product $product)
     {
         $data = $request->except(['_token', '_method']);
-        $product->update($data);
+        $product->update(['name' => $data['name']]);
+        if (@$data['tags'])
+            $product->tags()->sync($data['tags']);
         return redirect()->route('products.index')->with('message', 'Produto editado com sucesso');
     }
 
